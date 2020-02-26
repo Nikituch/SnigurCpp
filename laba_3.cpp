@@ -1,7 +1,5 @@
 #include <iostream>
 #include <string>
-#include <cstdlib>
-
 using namespace std;
 	enum Error{
 		ex1,
@@ -14,10 +12,10 @@ using namespace std;
 		switch (ex)
 		{
 		case 1:
-			cout << "Ви помилились, введiть цiле число ... "<< endl; 
+			cout << "Ви помилились, спробуйте ще раз asd... "<< endl; 
 			break;
 		default:
-			cout << "Ви помилились, спробуйте ще раз ... " << endl;
+			cout << "Ви помилились, спробуйте ще раз sdf ... " << endl;
 			break;
 		}	
 	}
@@ -25,7 +23,7 @@ using namespace std;
 	int foomassp(int* arr){
 		int p = 0;
 		
-    	for (int i = 0; i < 20; i++) {
+    	for (int i = 0; i < 10; i++) {
         	if (*(arr+i)%2 == 0) 
             	p++;
     	}
@@ -37,7 +35,7 @@ using namespace std;
 		int foomassnp(int* arr){
 		int np = 0;
 		
-    	for (int i = 0; i < 20; i++) {
+    	for (int i = 0; i < 10; i++) {
         	if (*(arr+i)%2 != 0) 
             	np++;
     	}
@@ -45,117 +43,56 @@ using namespace std;
     	return np;
     	
 	}
-	
-		bool fooCheck(char* p){
-			
-			while(*p)
-		
-    			if(!isdigit(*p++)){
-        			return false;	
-    			}
-    	
-    		return true;
-		}
-		
-		bool fooNumberCheck(int digit){
-								
-			if(digit == 1 || digit == 0)
-				return false;
-	
-				cout <<"Ви помилились, спробуйте ще раз " << endl;
-				cout<<"Для продовження  натиснiть - 1 "<<endl;
-				cout<<"Якщо ви хочете вийти натиснiть - 0 "<<endl; 
-				return true;
-					
-				
-		}
-		
-			bool fooCheckExit(int exit){
-								
-			if(exit == 1)
-				return true;
-
-				return false;
-						
-			}
-			
-			void fooCheckMass(int p, int np){
-				
-				cout<<"Парних елементiв - "<< p <<endl;
-    			cout<<"Непарних елементiв - "<< np <<endl;
-    			
-				if(p>np){
-					
-					cout<<"Парних елементiв бiльше"<<endl;
-					
-				}else if(p == np){
-					
-					cout<<"Кiлькiсть  елементiв однакова"<<endl;
-					
-				}else
-				
-					cout<<"Непарних елементiв бiльше"<<endl;
-			}
-		
-		
 
 	int main(){
 		
 		setlocale(LC_ALL, "Russian");
 		Error last = ex1;
 		int error = last;
-		bool exit = true, isd = true;
-		int arr[20] ;	
-		char str[256], *p = str;
-		
+		int exit = 1;
+		int arr[10] ;
+		int a = 0;
 		
 		while(exit){
-			isd = true;
 			cout<<"Введiть елементи масива (цiлiчисла)"<<endl;
 				
-				for(int i = 0; i<20; i++){
+				for(int i = 0; i<10; i++){
 					cout<<i+1<<") = ";
-					cin >> str;
-						if(fooCheck(p))
-							*(arr+i) = atoi(str);
-						else{
+					cin >> arr[i];
 						
-						error = 1;
-						printInfo(error);
-						i--;
-						}
+					while (!(cin.good())){
+						error = 1;        
+        				printInfo(error);
+						cout<<i+1<<") ";       
+        				cin.clear();                
+        				fflush(stdin);            
+    				}
+    				
     			}
     			
-    			fooCheckMass(foomassp(arr),foomassnp(arr));
-
+    			cout<<"Парних елементiв - "<< foomassp(arr) <<endl;
+    			cout<<"Непарних елементiв - "<< foomassnp(arr) <<endl;
+    			
+				if(foomassp(arr)>foomassnp(arr)){
+					cout<<"Парних елементiв бiльше"<<endl;
+				}else if(foomassp(arr) == foomassnp(arr)){
+					cout<<"Кiлькiсть  елементiв однакова"<<endl;
+				}else
+					cout<<"Непарних елементiв бiльше"<<endl;
 				
     			
 			cout<<"Якщо ви хочете продовжити  натиснiть - 1 "<<endl;
 			cout<<"Якщо ви хочете вийти натиснiть - 0 "<<endl;
 		
-			while(isd){
-	
-				cin >> str;
-    		
-					if(fooCheck(p)){
-		
-						isd = fooNumberCheck(atoi(str));
-							if(!isd)
-								exit = fooCheckExit(atoi(str));
-					
-					}else{
-						cout <<"Ви помилились, спробуйте ще раз " << endl;
-						cout<<"Для продовження  натиснiть - 1 "<<endl;
-						cout<<"Якщо ви хочете вийти натиснiть - 0 "<<endl; 
-						isd = true;
-					}
-					
-					
-        	}  
-			
+			while (!(cin >> exit)){  
 
-				    	     								
-    							
+        	cout <<"Ви помилились, спробуйте ще раз " << endl;
+			cout<<"Для продовження  натиснiть - 1 "<<endl;
+			cout<<"Якщо ви хочете вийти натиснiть - 0 "<<endl;          
+        	cin.clear();                
+        	fflush(stdin); 
+			
+    		}					
 		}	
 		system("pause");
 		return 0;
