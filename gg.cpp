@@ -168,7 +168,7 @@
 	
 				gets(str);
     		
-					if(fooCheck2(p) && fooCheck3(p)){
+					if(fooCheck(p) && fooCheck3(p)){
 		
 						isd = fooNumberCheck(atoi(str));
 							if(!isd)
