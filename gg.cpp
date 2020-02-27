@@ -8,6 +8,7 @@
  		ex2
 	};
 	
+// Печатает ошибку в консоль
 	void printInfo(int ex)
 	{
  		switch (ex)
@@ -15,12 +16,18 @@
  		case 1:
 			cout << "Ви помилились, введiть лише одне цiле число ... "<< endl; 
  			break;
+ 		case 2:
+ 			cout <<"Ви помилились, спробуйте ще раз " << endl;
+			cout<<"Для продовження  натиснiть - 1 "<<endl;
+			cout<<"Якщо ви хочете вийти натиснiть - 0 "<<endl; 
+			break;
  		default:
 			cout << "Ви помилились, спробуйте ще раз ... " << endl;
  			break;
  		}	
  	}
-
+ 	
+//Подщёт парных елементов масива
  	int foomassp(int* arr){
  		int p = 0;
  		
@@ -32,7 +39,7 @@
 		return p;
      	
  		}
-
+//Подщёт непарных елементов масива
  		int foomassnp(int* arr){
  		int np = 0;
  		
@@ -44,38 +51,34 @@
      	return np;
      	
  		}
-	
+//Проверка на ввод(только числа)
 		bool fooCheck(char* p){
 			
 			while(*p)
-	   			if(!isdigit(*p++) ){
+	   			if(!isdigit(*p++) || *p == '-' )
         			return false;	
-    			}
+    			
    	
     		return true;
 		}
-		
+//Проверка на ввод(числа со знаком минус)
 				bool fooCheck2(char* p){
-			
-			while(*p)
 				
-	   			if(!isdigit(*p++) ){
-        			return false;	
-    			}
-   	
+	   			if(*p == '-' )
+        			return true;	
+    	
     		return true;
 		}
-		
+//Проверка на ввод(без пробела)
 				bool fooCheck3(char* p){
-					char a = ' ';
 			while(*p)
-	   			if(*p++ == a){
+	   			if(*p++ == ' '){
         			return false;	
     			}
    	
     		return true;
 		}
-		
+//Проверка на ввод(числа со знаком минус)
 				bool fooCheck4(char* p){
 			
 			while(*p)
@@ -85,6 +88,7 @@
    	
     		return true;
 		}
+//Проверка на ввод(только 1 или 0)
 		bool fooNumberCheck(int digit){
 								
 			if(digit == 1 || digit == 0)
@@ -141,11 +145,10 @@
 			isd = true;
  			cout<<"Введiть елементи масива (цiлiчисла)"<<endl;
  				
-
 				for(int i = 0; i<20; i++){
  					cout<<i+1<<") = ";
 					gets(str);
-						if(fooCheck(p) && fooCheck3(p) )
+						if(fooCheck(p) && fooCheck3(p) && fooCheck2(p) )
 							*(arr+i) = atoi(str);
 						else {
 						error = 1;
@@ -172,9 +175,8 @@
 								exit = fooCheckExit(atoi(str));
 					
 					}else{
-						cout <<"Ви помилились, спробуйте ще раз " << endl;
-						cout<<"Для продовження  натиснiть - 1 "<<endl;
-						cout<<"Якщо ви хочете вийти натиснiть - 0 "<<endl; 
+						error = 2;
+						printInfo(error);
 						isd = true;
 					}
 					
