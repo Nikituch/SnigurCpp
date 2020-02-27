@@ -13,7 +13,7 @@
  		switch (ex)
  		{
  		case 1:
-			cout << "Ви помилились, введiть цiле число ... "<< endl; 
+			cout << "Ви помилились, введiть лише одне цiле число ... "<< endl; 
  			break;
  		default:
 			cout << "Ви помилились, спробуйте ще раз ... " << endl;
@@ -48,8 +48,7 @@
 		bool fooCheck(char* p){
 			
 			while(*p)
-				
-	   			if(!isdigit(*p++) && *p =='-' ){
+	   			if(!isdigit(*p++) ){
         			return false;	
     			}
    	
@@ -67,6 +66,25 @@
     		return true;
 		}
 		
+				bool fooCheck3(char* p){
+					char a = ' ';
+			while(*p)
+	   			if(*p++ == a){
+        			return false;	
+    			}
+   	
+    		return true;
+		}
+		
+				bool fooCheck4(char* p){
+			
+			while(*p)
+	   			if(*p++ == '-'){
+        			return false;	
+    			}
+   	
+    		return true;
+		}
 		bool fooNumberCheck(int digit){
 								
 			if(digit == 1 || digit == 0)
@@ -126,11 +144,10 @@
 
 				for(int i = 0; i<20; i++){
  					cout<<i+1<<") = ";
-					cin >> str;
-						if(fooCheck(p))
+					gets(str);
+						if(fooCheck(p) && fooCheck3(p) )
 							*(arr+i) = atoi(str);
-						else{
- 						
+						else {
 						error = 1;
 						printInfo(error);
 						i--;
@@ -146,9 +163,9 @@
 
 			while(isd){
 	
-				cin >> str;
+				gets(str);
     		
-					if(fooCheck2(p) ){
+					if(fooCheck2(p) && fooCheck3(p)){
 		
 						isd = fooNumberCheck(atoi(str));
 							if(!isd)
