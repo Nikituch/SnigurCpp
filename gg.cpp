@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <conio.h>
+#include <stdio.h>
 
  using namespace std;
  	enum Error{
@@ -52,64 +54,49 @@
      	
  		}
 //Проверка на ввод(только числа)
-		bool fooCheck(char* p){
-			
-			while(*p)
-	   			if(!isdigit(*p++) || *p == '-' )
-        			return false;	
-    			
-   	
-    		return true;
+		 int GetInt(){
+   			int k, n = 0, flgS = 0, c = 0, q = 0;
+ 
+    			while (1)
+   			{
+ 
+        			k = getch();
+ 
+        			if ((k == '-') && (c == 0) && (flgS == 0)) 
+       			{
+          			flgS = -1;
+          			putch('-');
+          			c++;
+       			}
+ 
+       			if ((k >= '0') && (k <= '9')) 
+       			{
+           			printf("%c",k);
+           			n = n*10 + k-'0';
+           			c++;
+           			q++;
+       			}
+     
+       			if (k == 8)
+       			{
+           			putch(8);
+           			putch(' ');
+           			putch(8);
+           			n = n / 10;
+           			q--;
+           			if (q < 0) q=0;
+           			c--;
+           			if (c == 0) flgS=0;
+       			}
+ 
+       			if ((k == 13) && (c != 0) && (q != 0)) break;
+ 
+    		}
+ 
+    			if (flgS == -1) n = -n;
+    	return n;
 		}
-//Проверка на ввод(числа со знаком минус)
-				bool fooCheck2(char* p){
-				
-	   			if(*p == '-' )
-        			return true;	
-    	
-    		return true;
-		}
-//Проверка на ввод(без пробела)
-				bool fooCheck3(char* p){
-			while(*p)
-	   			if(*p++ == ' '){
-        			return false;	
-    			}
-   	
-    		return true;
-		}
-//Проверка на ввод(числа со знаком минус)
-				bool fooCheck4(char* p){
-			
-			while(*p)
-	   			if(*p++ == '-'){
-        			return false;	
-    			}
-   	
-    		return true;
-		}
-//Проверка на ввод(только 1 или 0)
-		bool fooNumberCheck(int digit){
-								
-			if(digit == 1 || digit == 0)
-				return false;
-	
-				cout <<"Ви помилились, спробуйте ще раз " << endl;
-				cout<<"Для продовження  натиснiть - 1 "<<endl;
-				cout<<"Якщо ви хочете вийти натиснiть - 0 "<<endl; 
-				return true;
-					
-				
-		}
-		
-			bool fooCheckExit(int exit){
-								
-				if(exit == 1)
-				return true;
 
-				return false;
-						
-			}
 			
 			void fooCheckMass(int p, int np){
 				
@@ -137,24 +124,17 @@
  		Error last = ex1;
  		int error = last;
 		bool exit = true, isd = true;
-		int arr[20] ;	
-		char str[256], *p = str;
+		int arr[20] ;
 		
- 		
  		while(exit){
-			isd = true;
+			cout<<endl;
  			cout<<"Введiть елементи масива (цiлiчисла)"<<endl;
  				
 				for(int i = 0; i<20; i++){
+					
  					cout<<i+1<<") = ";
-					gets(str);
-						if(fooCheck(p) && fooCheck3(p) && fooCheck2(p) )
-							*(arr+i) = atoi(str);
-						else {
-						error = 1;
-						printInfo(error);
-						i--;
-						}
+					*(arr+i) = GetInt();
+					cout<<endl;	
      			}
      			
 
@@ -164,24 +144,23 @@
  			cout<<"Якщо ви хочете вийти натиснiть - 0 "<<endl;
  		
 
-			while(isd){
-	
-				gets(str);
-    		
-					if(fooCheck(p) && fooCheck3(p)){
-		
-						isd = fooNumberCheck(atoi(str));
-							if(!isd)
-								exit = fooCheckExit(atoi(str));
+			while(1){
+				int ex ;
+				ex = GetInt();
+				if( ex == 1){
+					exit = true;
+					break;
+				}else if(ex == 0){
+					exit = false;
+					break;
+				}else{
+					cout<<endl;
+					error = 2;
+					printInfo(error);
+				}
 					
-					}else{
-						error = 2;
-						printInfo(error);
-						isd = true;
-					}
 					
-					
-        	}  		    	     								
+        	} 		    	     								
     							
  		}	
  		system("pause");
