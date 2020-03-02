@@ -21,7 +21,7 @@
  		case 2:
  			cout <<"¬и помилились, спробуйте ще раз " << endl;
 			cout<<"ƒл€ продовженн€  натиснiть - 1 "<<endl;
-			cout<<"якщо ви хочете вийти натиснiть - 0 "<<endl; 
+			cout<<"якщо ви хочете вийти натиснiть - 2 "<<endl; 
 			break;
  		default:
 			cout << "¬и помилились, спробуйте ще раз ... " << endl;
@@ -141,7 +141,7 @@
     			fooCheckMass(foomassp(arr),foomassnp(arr));		
      			
  			cout<<"якщо ви хочете продовжити  натиснiть - 1 "<<endl;
- 			cout<<"якщо ви хочете вийти натиснiть - 0 "<<endl;
+ 			cout<<"якщо ви хочете вийти натиснiть - 2 "<<endl;
  		
 
 			while(1){
@@ -150,7 +150,7 @@
 				if( ex == 1){
 					exit = true;
 					break;
-				}else if(ex == 0){
+				}else if(ex == 2){
 					exit = false;
 					break;
 				}else{
@@ -162,7 +162,8 @@
 					
         	} 		    	     								
     							
- 		}	
+ 		}
+		 cout<<endl;	
  		system("pause");
  		return 0;
  }
